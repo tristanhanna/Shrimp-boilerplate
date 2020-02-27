@@ -1,18 +1,24 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
+const autoprefixer = require('gulp-autoprefixer');
+const sourcemaps = require('gulp-sourcemaps');
 
 
 //compile scss into class
 function style() {
   //where is the scss file
   return gulp.src('./scss/**/*.scss')
+  .pipe(soucemaps.init())
   //pass through sass compiler
-  .pipe(sass())
+  .pipe(sass({outputStyle: 'nested'}))
   //where to save compiled css
-  .pipe(gulp.dest('./css'))
+  //.pipe(gulp.dest('./css'))
   //stream changes to all browsers
-  .pipe(browserSync.stream());
+  .pipe(browserSync.stream())
+  .pipe(autoprefixer({cascade:false}))
+  .pipe(sourcemaps.write('.'))
+  .pipe(gulp.dest('./css'));
 }
 
 
@@ -25,7 +31,7 @@ function watch() {
     }
   });
   //is there any change to scss? then run style
-  gulp.watch('./scss/**/*.scss', style);
+  gulp.watch('./scss/**/*.scss', {ignoreInitial:false},style);
   //stream changes if html changes
   gulp.watch('./*html').on('change', browserSync.reload);
   //stream changes if js changes

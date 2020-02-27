@@ -12,8 +12,14 @@
   "author": "Tristan Hanna",
   "license": "MIT",
   "devDependencies": {
+    "auto-prefixer": "^0.4.2",
     "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
-    "gulp-sass": "^4.0.2"
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5"
+  },
+  "dependencies": {
+    "animate.css": "^3.7.2"
   }
 }
