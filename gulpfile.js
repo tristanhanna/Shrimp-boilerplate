@@ -9,7 +9,7 @@ const sourcemaps = require('gulp-sourcemaps');
 function style() {
   //where is the scss file
   return gulp.src('./scss/**/*.scss')
-  .pipe(soucemaps.init())
+  .pipe(sourcemaps.init())
   //pass through sass compiler
   .pipe(sass({outputStyle: 'nested'}))
   //where to save compiled css
